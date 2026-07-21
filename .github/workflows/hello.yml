@@ -1,0 +1,25 @@
+# name of the workflow
+name: Hello workflow
+
+# Trigger the workflow on every push
+on:
+    push:
+
+# Define the jobs that will run in this workflow
+jobs:
+    # define a job named "greet"
+    greet:
+        # specify the type of runner to use
+        runs-on: ubuntu-latest
+
+        # define the steps that will run in this job
+        steps:
+            # Step 1: Checkout the repository 
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            # Step 2: Print greeting
+            - name: Print greeting
+              run: echo "Hello from GitHub Actions!"
+
+            
