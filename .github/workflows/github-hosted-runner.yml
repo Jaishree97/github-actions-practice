@@ -1,50 +1,48 @@
 name: GitHub Hosted Runners & Tools
 
 on:
-  workflow_dispatch:
-
+    workflow_dispatch:
+    
 jobs:
-  ubuntu-runner:
-    name: Ubuntu Runner
-    runs-on: ubuntu-latest
+    ubuntu-runner:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print OS Name
+              run: echo "${{ runner.os }}"
 
-    steps:
-      - name: Print OS Name
-        run: echo "Operating System: ${{ runner.os }}"
+            - name: Print Hostname
+              run: hostname
 
-      - name: Print Hostname
-        run: hostname
+            - name: Print Current User
+              run: whoami
 
-      - name: Print Current User
-        run: echo "Current User: $(whoami)"
+            - name: Print Working Directory
+              run: pwd
 
-      - name: Print Working Directory
-        run: pwd
 
-  windows-runner:
-    name: Windows Runner
-    runs-on: windows-latest
+    windows-runner:
+        runs-on: windows-latest
+        steps:
+            - name: Print OS Name
+              run: echo "${{ runner.os }}"
 
-    steps:
-      - name: Print OS Name
-        run: echo "Operating System: ${{ runner.os }}"
+            - name: Print Hostname
+              run: hostname
 
-      - name: Print Hostname
-        run: hostname
+            - name: Print Current User
+              run: echo $env:USERNAME
 
-      - name: Print Current User
-        run: echo "Current User: $env:USERNAME"
+    
+    macOS-runner:
+        runs-on: macos-latest
+        steps:
+            - name: Print OS Name
+              run: echo "${{ runner.os }}"
 
-  macos-runner:
-    name: macOS Runner
-    runs-on: macos-latest
+            - name: Print Hostname
+              run: hostname
 
-    steps:
-      - name: Print OS Name
-        run: echo "Operating System: ${{ runner.os }}"
+            - name: Print Current User
+              run: whoami
 
-      - name: Print Hostname
-        run: hostname
-
-      - name: Print Current User
-        run: echo "Current User: $(whoami)"
+            
