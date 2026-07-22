@@ -1,0 +1,50 @@
+name: GitHub Hosted Runners & Tools
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ubuntu-runner:
+    name: Ubuntu Runner
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print OS Name
+        run: echo "Operating System: ${{ runner.os }}"
+
+      - name: Print Hostname
+        run: hostname
+
+      - name: Print Current User
+        run: echo "Current User: $(whoami)"
+
+      - name: Print Working Directory
+        run: pwd
+
+  windows-runner:
+    name: Windows Runner
+    runs-on: windows-latest
+
+    steps:
+      - name: Print OS Name
+        run: echo "Operating System: ${{ runner.os }}"
+
+      - name: Print Hostname
+        run: hostname
+
+      - name: Print Current User
+        run: echo "Current User: $env:USERNAME"
+
+  macos-runner:
+    name: macOS Runner
+    runs-on: macos-latest
+
+    steps:
+      - name: Print OS Name
+        run: echo "Operating System: ${{ runner.os }}"
+
+      - name: Print Hostname
+        run: hostname
+
+      - name: Print Current User
+        run: echo "Current User: $(whoami)"
