@@ -5,7 +5,12 @@ on:
 
 jobs:
     self-hosted-job:
-        runs-on: self-hosted
+        runs-on: 
+            - self-hosted 
+            - linux
+            - aws
+            - devops
+            - ubuntu
         steps:
             - name: Checking Self-Hosted Runner Information
               run: |
