@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Runs only on the main branch
-        if: github.ref == 'refs/heads/main'
-        run: echo "Running on the main branch."
+      - name: Intentionally fail this step
+        run: exit 1
+
+      - name: Runs only when the previous step failed
+        if: failure()
+        run: echo "Previous step failed."
