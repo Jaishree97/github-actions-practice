@@ -1,16 +1,19 @@
 name: Conditionals Demo
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  branch-condition:
+  push-event:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
 
     steps:
-      - name: Intentionally fail this step
-        run: exit 1
-
-      - name: Runs only when the previous step failed
-        if: failure()
-        run: echo "Previous step failed."
+      - name: Runs only on push events
+        run: echo "Only runs on push events."
