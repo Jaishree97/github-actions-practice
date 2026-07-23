@@ -1,19 +1,18 @@
 name: Conditionals Demo
 
 on:
-  push:
-    branches:
-      - main
-
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
-  push-event:
-    if: github.event_name != 'pull_request'
+  continue-on-error-demo:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Runs only on push events
-        run: echo "Only runs on push events."
+      - name: This step will fail
+        continue-on-error: true
+        run: |
+          echo "This step is failing..."
+          exit 1
+
+      - name: Workflow continues
+        run: echo "The workflow is still running!"
