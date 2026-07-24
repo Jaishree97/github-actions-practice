@@ -27,9 +27,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: report-file
+          path: downloaded-report
 
       - name: List downloaded files
-        run: ls -l
+        run: |
+          pwd
+          ls -R
 
       - name: Read report
-        run: cat report-file/report.txt
+        run: |
+          cat downloaded-report/report.txt
