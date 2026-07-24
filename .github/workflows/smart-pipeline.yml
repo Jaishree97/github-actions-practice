@@ -25,16 +25,16 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
+          node-version: 22
 
       - name: Install Dependencies
-        run: pip install -r requirements.txt
+        run: npm install
 
-      - name: Run Linter
-        run: flake8 app.py
+      - name: Check JavaScript File
+        run: node src/app.js
 
   # Job 3 - Test
   test:
