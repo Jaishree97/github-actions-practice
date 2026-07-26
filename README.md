@@ -1,5 +1,5 @@
 # Github Action practice
 
-## concepts
+[![Docker CI](https://github.com/Jaishree97/github-actions-practice/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/Jaishree97/github-actions-practice/actions/workflows/docker-publish.yml)
 
-to create a Github acation workflows you need a folder called `.github/workflows`
+Learning GitHub Actions, Docker and CI/CD.
