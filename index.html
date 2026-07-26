@@ -2,146 +2,377 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Docker CI/CD Pipeline Demo</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GitHub Actions Docker CI/CD</title>
+
 <style>
-body {
-  margin:0;
-  font-family:Segoe UI, Arial, sans-serif;
-  background:linear-gradient(135deg,#1d2b64,#f8cdda);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:100vh;
-  color:white;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.container {
-  background:rgba(0,0,0,0.35);
-  padding:30px;
-  border-radius:20px;
-  width:90%;
-  max-width:1000px;
-  box-shadow:0 8px 25px rgba(0,0,0,0.4);
-  text-align:center;
+body{
+    font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+    background:linear-gradient(135deg,#0d1117,#161b22,#21262d);
+    color:#f0f6fc;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
 }
 
-h1 {
-  margin-bottom:25px;
-  font-size:42px;
+.container{
+
+    width:100%;
+    max-width:1100px;
+
+    background:#161b22;
+
+    border:1px solid #30363d;
+
+    border-radius:18px;
+
+    padding:45px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.45);
+
+    text-align:center;
+
 }
 
-.badge {
-  margin-bottom:30px;
+h1{
+
+    font-size:44px;
+
+    margin-bottom:10px;
+
 }
 
-/* Horizontal pipeline */
-.pipeline {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  flex-wrap:wrap;
+.subtitle{
+
+    color:#8b949e;
+
+    font-size:18px;
+
+    margin-bottom:12px;
+
 }
 
-.stage {
-  padding:20px 25px;
-  border-radius:12px;
-  font-size:18px;
-  font-weight:bold;
-  position:relative;
-  flex:1;
-  min-width:150px;
-  text-align:center;
-  color:white;
-  transition: transform 0.3s;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+.author{
+
+    color:#58a6ff;
+
+    font-size:17px;
+
+    margin-bottom:30px;
+
 }
 
-.stage:hover {
-  transform: translateY(-5px);
+.badge{
+
+    margin-bottom:40px;
+
 }
 
-/* Stage colors */
-.stage.checkout { background:#3498db; }   /* Blue */
-.stage.build { background:#2ecc71; }      /* Green */
-.stage.push { background:#e67e22; }       /* Orange */
-.stage.pullrun { background:#9b59b6; }    /* Purple */
+.pipeline{
 
-/* Icons */
-.stage span.icon {
-  font-size:32px;
-  margin-bottom:10px;
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:40px;
+
 }
 
-/* Arrow between stages */
-.stage::after {
-  content:'→';
-  position:absolute;
-  right:-20px;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:24px;
-  color:#fff;
+.stage{
+
+    flex:1;
+
+    min-width:170px;
+
+    background:#21262d;
+
+    border:1px solid #30363d;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    transition:.3s;
+
 }
 
-.stage:last-child::after {
-  content:'';
+.stage:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.35);
+
 }
 
-.tech {
-  margin-top:30px;
+.icon{
+
+    font-size:40px;
+
+    margin-bottom:15px;
+
 }
 
-.tech span {
-  display:inline-block;
-  background:white;
-  color:black;
-  padding:6px 12px;
-  margin:5px;
-  border-radius:20px;
-  font-size:13px;
-  font-weight:bold;
+.stage h3{
+
+    margin-bottom:10px;
+
 }
+
+.stage p{
+
+    color:#8b949e;
+
+    font-size:14px;
+
+}
+
+.arrow{
+
+    font-size:30px;
+
+    color:#58a6ff;
+
+}
+
+.journey{
+
+    margin-top:25px;
+
+    padding:25px;
+
+    background:#0d1117;
+
+    border-radius:12px;
+
+    border:1px solid #30363d;
+
+}
+
+.journey h2{
+
+    margin-bottom:20px;
+
+}
+
+.flow{
+
+    font-size:18px;
+
+    line-height:2;
+
+    color:#c9d1d9;
+
+}
+
+.tech{
+
+    margin-top:35px;
+
+}
+
+.tech span{
+
+    display:inline-block;
+
+    margin:6px;
+
+    padding:9px 18px;
+
+    border-radius:30px;
+
+    background:#21262d;
+
+    border:1px solid #30363d;
+
+    color:#58a6ff;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+}
+
+.footer{
+
+    margin-top:40px;
+
+    border-top:1px solid #30363d;
+
+    padding-top:20px;
+
+    color:#8b949e;
+
+    font-size:15px;
+
+}
+
+@media(max-width:900px){
+
+.pipeline{
+
+flex-direction:column;
+
+}
+
+.arrow{
+
+transform:rotate(90deg);
+
+}
+
+}
+
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>🚀 Docker CI/CD using GitHub Actions</h1>
+<h1>🚀 Automated Docker CI/CD Pipeline</h1>
+
+<p class="subtitle">
+Build • Test • Publish Docker Images using GitHub Actions
+</p>
+
+<p class="author">
+Built by <strong>Jaishree Chaure</strong>
+</p>
 
 <div class="badge">
-<img src="https://github.com/srdangat/github-actions-practice/actions/workflows/docker-publish.yml/badge.svg" alt="GitHub Actions Docker Publish Status">
+
+<img src="https://github.com/Jaishree97/github-actions-practice/actions/workflows/docker-publish.yml/badge.svg"
+alt="Workflow Status">
+
 </div>
 
 <div class="pipeline">
-  <div class="stage checkout">
-    <span class="icon">🔄</span>
-    Code Checkout
-  </div>
-  <div class="stage build">
-    <span class="icon">🐳</span>
-    Build
-  </div>
-  <div class="stage push">
-    <span class="icon">📤</span>
-    Push
-  </div>
-  <div class="stage pullrun">
-    <span class="icon">🚀</span>
-    Pull & Run
-  </div>
+
+<div class="stage">
+
+<div class="icon">📂</div>
+
+<h3>Checkout</h3>
+
+<p>Download source code from GitHub repository.</p>
+
+</div>
+
+<div class="arrow">➜</div>
+
+<div class="stage">
+
+<div class="icon">🐳</div>
+
+<h3>Build Image</h3>
+
+<p>Create Docker image using the Dockerfile.</p>
+
+</div>
+
+<div class="arrow">➜</div>
+
+<div class="stage">
+
+<div class="icon">📦</div>
+
+<h3>Push Image</h3>
+
+<p>Publish the Docker image to Docker Hub.</p>
+
+</div>
+
+<div class="arrow">➜</div>
+
+<div class="stage">
+
+<div class="icon">🚀</div>
+
+<h3>Deploy</h3>
+
+<p>Pull and run the container successfully.</p>
+
+</div>
+
+</div>
+
+<div class="journey">
+
+<h2>CI/CD Workflow Journey</h2>
+
+<p class="flow">
+
+Git Push
+
+➡️ GitHub Actions
+
+➡️ Docker Build
+
+➡️ Docker Hub
+
+➡️ Docker Pull
+
+➡️ Running Container
+
+</p>
+
 </div>
 
 <div class="tech">
+
 <span>Docker</span>
-<span>Nginx</span>
+
 <span>GitHub Actions</span>
+
 <span>Docker Hub</span>
+
+<span>Nginx</span>
+
+<span>Linux</span>
+
+<span>Git</span>
+
+<span>CI/CD</span>
+
+</div>
+
+<div class="footer">
+
+<p>
+
+✅ Image Built Automatically &nbsp;|&nbsp;
+
+✅ Published to Docker Hub &nbsp;|&nbsp;
+
+✅ Running Successfully on localhost:8080
+
+</p>
+
+<br>
+
+<p>
+
+Day 45 • #90DaysOfDevOps • Cloud & DevOps Learning Journey
+
+</p>
+
 </div>
 
 </div>
