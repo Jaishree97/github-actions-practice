@@ -1,9 +1,14 @@
 name: Docker CI
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
+      - feature/**
+
+  pull_request:
+    branches:
+      - main
 
 jobs:
     docker-build:
@@ -32,6 +37,7 @@ jobs:
               run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
             - name: Build and Push Docker Image
+              if: github.ref_name == 'main'
               uses: docker/build-push-action@v6
               with:
                 context: .
@@ -39,4 +45,12 @@ jobs:
                 tags: |
                   ${{ secrets.DOCKER_USERNAME }}/webapp:latest
                   ${{ secrets.DOCKER_USERNAME }}/webapp:sha-${{ env.SHORT_SHA }}
+
+            - name: Build Docker Image Only
+              if: github.ref_name != 'main'
+              uses: docker/build-push-action@v6
+              with:
+                context: .
+                push: false
+                tag: webapp:test
                   
