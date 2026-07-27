@@ -15,8 +15,8 @@ jobs:
         id: greet
         uses: ./.github/actions/setup-and-greet
         with:
-          name: "Jaishree"
-          language: "en"
+          name: "DevOps Team"
+          language: "fr"
 
       - name: Print Action Output
         run: |
