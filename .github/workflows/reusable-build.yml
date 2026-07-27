@@ -10,7 +10,7 @@ on:
 
       environment:
         description: "Deployment Environment"
-        required: true
+        required: false
         default: "staging"
         type: string
 
