@@ -1,0 +1,33 @@
+name: External Trigger
+
+on:
+  repository_dispatch:
+    types:
+      - deploy
+      - health-check
+
+jobs:
+  external-event:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Event Details
+        run: |
+          echo "Event Name: ${{ github.event_name }}"
+          echo "Event Type: ${{ github.event.action }}"
+          echo "Repository: ${{ github.repository }}"
+
+      - name: Deploy Application
+        if: github.event.action == 'deploy'
+        run: |
+          echo "External deployment request received"
+          echo "Environment: ${{ github.event.client_payload.environment }}"
+          echo "Version: ${{ github.event.client_payload.version }}"
+          echo "Deploying application..."
+
+      - name: Run Health Check
+        if: github.event.action == 'health-check'
+        run: |
+          echo "External health-check request received"
+          echo "Service: ${{ github.event.client_payload.service }}"
+          echo "Running health check..."
