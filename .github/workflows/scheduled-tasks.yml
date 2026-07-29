@@ -45,3 +45,9 @@ jobs:
                 echo "Health check passed"
                 
 
+#-L             follow redirects
+#-s             silent
+#-o /dev/null   discard response body
+#-w             output selected response metadata
+#%{http_code}   print HTTP status code
+
